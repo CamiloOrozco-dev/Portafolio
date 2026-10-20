@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juan Camilo Zapata Orozco | Ingeniero de Software Full Stack & Backend</title>
+  <meta name="description" content="Portafolio de Juan Camilo Zapata Orozco, Ingeniero de Software Full Stack y Backend (.NET, Python, React) con experiencia en Arquitectura Hexagonal, TDD, Docker, Linux e IA Agéntica.">
+  <meta property="og:title" content="Juan Camilo Zapata Orozco | Software Engineer">
+  <meta property="og:description" content="Full Stack & Backend Engineer · .NET · Python · React · Agentic AI">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230b0f19'/><text x='50' y='64' font-size='44' font-family='Arial' font-weight='700' text-anchor='middle' fill='%237dd3fc'>JC</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-glow" aria-hidden="true"></div>
+
+  <!-- Navegación -->
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="#inicio" class="nav__logo" aria-label="Inicio">
+        <span class="logo-mark">JC</span><span class="logo-text">Zapata<span class="accent">.dev</span></span>
+      </a>
+      <nav class="nav__links" id="navLinks" aria-label="Navegación principal">
+        <a href="#sobre-mi" data-i18n="nav.about">Sobre mí</a>
+        <a href="#habilidades" data-i18n="nav.skills">Habilidades</a>
+        <a href="#experiencia" data-i18n="nav.experience">Experiencia</a>
+        <a href="#proyectos" data-i18n="nav.projects">Proyectos</a>
+        <a href="#contacto" data-i18n="nav.contact">Contacto</a>
+      </nav>
+      <div class="nav__actions">
+        <button class="lang-toggle" id="langToggle" type="button" aria-label="Cambiar idioma">EN</button>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero" id="inicio">
+      <div class="container hero__inner">
+        <div class="hero__content reveal">
+          <span class="badge"><span class="pulse"></span><span data-i18n="hero.badge">Disponible para nuevas oportunidades</span></span>
+          <h1 class="hero__title">
+            <span data-i18n="hero.greeting">Hola, soy</span><br>
+            <span class="gradient-text">Juan Camilo Zapata</span>
+          </h1>
+          <p class="hero__role" data-i18n="hero.role">Ingeniero de Software Full Stack &amp; Backend</p>
+          <p class="hero__typed mono"><span class="prompt">&gt;</span> <span id="typed"></span><span class="caret">|</span></p>
+          <p class="hero__desc" data-i18n="hero.desc">Construyo APIs, microservicios y sistemas distribuidos en tiempo real con <strong>.NET</strong>, <strong>Python</strong> y <strong>React</strong>, aplicando Arquitectura Hexagonal, TDD y automatización con <strong>IA Agéntica</strong>.</p>
+          <div class="hero__cta">
+            <a href="#proyectos" class="btn btn--primary" data-i18n="hero.cta1">Ver proyectos</a>
+            <a href="assets/CV_Juan_Camilo_Zapata_ES.pdf" class="btn btn--ghost" id="cvLink" download>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14"/></svg>
+              <span data-i18n="hero.cta2">Descargar CV</span>
+            </a>
+          </div>
+          <div class="hero__social">
+            <a href="https://github.com/Camilo-Orozco" target="_blank" rel="noopener" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 00-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 015.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.7 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0012 .5z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/camilo-orozco-5706b8265/" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+            </a>
+            <a href="mailto:jcamiloorozco02@gmail.com" aria-label="Email">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="3"/><path d="M2 7l10 6 10-6"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero__visual reveal">
+          <div class="code-card">
+            <div class="code-card__bar">
+              <span class="dot dot--r"></span><span class="dot dot--y"></span><span class="dot dot--g"></span>
+              <span class="code-card__file mono">engineer.py</span>
+            </div>
+<pre class="code-card__body mono"><code><span class="k">class</span> <span class="c">SoftwareEngineer</span>:
+    <span class="k">def</span> <span class="f">__init__</span>(self):
+        self.name = <span class="s">"Juan Camilo Zapata"</span>
+        self.location = <span class="s">"Medellín, CO"</span>
+        self.experience = <span class="n">3</span>  <span class="cm"># años +</span>
+        self.stack = [
+            <span class="s">"C# / .NET 8"</span>, <span class="s">"Python"</span>,
+            <span class="s">"React"</span>, <span class="s">"SQL"</span>, <span class="s">"Docker"</span>,
+        ]
+        self.principles = [
+            <span class="s">"SOLID"</span>, <span class="s">"TDD"</span>,
+            <span class="s">"Hexagonal Architecture"</span>,
+        ]
+
+    <span class="k">def</span> <span class="f">build</span>(self, idea):
+        <span class="k">return</span> <span class="c">Solution</span>(idea, ai_agents=<span class="k">True</span>)</code></pre>
+          </div>
+          <div class="stats">
+            <div class="stat"><span class="stat__num" data-count="3">0</span><span class="stat__plus">+</span><span class="stat__label" data-i18n="stats.years">Años de experiencia</span></div>
+            <div class="stat"><span class="stat__num" data-count="4">0</span><span class="stat__plus">+</span><span class="stat__label" data-i18n="stats.projects">Proyectos clave</span></div>
+            <div class="stat"><span class="stat__num" data-count="3">0</span><span class="stat__label" data-i18n="stats.certs">Certificaciones</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sobre mí -->
+    <section class="section" id="sobre-mi">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__kicker mono">01.</span>
+          <h2 class="section__title" data-i18n="about.title">Sobre mí</h2>
+        </div>
+        <div class="about reveal">
+          <div class="about__text">
+            <p data-i18n="about.p1">Soy Ingeniero de Software con más de 3 años de experiencia diseñando, desarrollando y manteniendo aplicaciones empresariales, APIs REST, microservicios y sistemas distribuidos en tiempo real sobre Linux y contenedores Docker.</p>
+            <p data-i18n="about.p2">Me apasiona escribir código limpio y mantenible: trabajo con <strong>Arquitectura Hexagonal</strong>, principios <strong>SOLID</strong>, Inversión de Control y <strong>Test-Driven Development</strong>. He integrado software con hardware en dispositivos embebidos y automatizado flujos de ingeniería supervisando <strong>Agentes de IA</strong>.</p>
+            <p data-i18n="about.p3">Disfruto colaborar en equipos ágiles bajo Scrum, documentar con claridad y convertir requerimientos complejos en productos estables y escalables.</p>
+          </div>
+          <ul class="about__facts">
+            <li><span class="fact__icon">📍</span><span data-i18n="about.f1">Medellín, Colombia · Remoto / Híbrido</span></li>
+            <li><span class="fact__icon">🎓</span><span data-i18n="about.f2">Ingeniería de Software (en curso)</span></li>
+            <li><span class="fact__icon">🧠</span><span data-i18n="about.f3">Certificado en Azure AI &amp; Azure OpenAI</span></li>
+            <li><span class="fact__icon">🔄</span><span data-i18n="about.f4">Scrum Foundation Professional (SFPC™)</span></li>
+            <li><span class="fact__icon">🗣️</span><span data-i18n="about.f5">Español nativo · Inglés B1/B2</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Habilidades -->
+    <section class="section" id="habilidades">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__kicker mono">02.</span>
+          <h2 class="section__title" data-i18n="skills.title">Habilidades técnicas</h2>
+        </div>
+        <div class="skills">
+          <article class="skill-card reveal">
+            <div class="skill-card__icon">⚙️</div>
+            <h3 data-i18n="skills.backend">Backend</h3>
+            <div class="chips"><span>C#</span><span>.NET 8</span><span>ASP.NET Core</span><span>Entity Framework</span><span>Python</span><span>FastAPI</span><span>SQLAlchemy</span><span>asyncio</span></div>
+          </article>
+          <article class="skill-card reveal">
+            <div class="skill-card__icon">🎨</div>
+            <h3>Frontend</h3>
+            <div class="chips"><span>React</span><span>TypeScript</span><span>JavaScript</span><span>HTML5</span><span>CSS3</span><span>Rich CLI</span></div>
+          </article>
+          <article class="skill-card reveal">
+            <div class="skill-card__icon">🗄️</div>
+            <h3 data-i18n="skills.db">Bases de datos</h3>
+            <div class="chips"><span>SQL Server</span><span>T-SQL</span><span>PostgreSQL</span><span>Alembic</span><span>EF Migrations</span></div>
+          </article>
+          <article class="skill-card reveal">
+            <div class="skill-card__icon">🏛️</div>
+            <h3 data-i18n="skills.arch">Arquitectura</h3>
+            <div class="chips"><span>Hexagonal</span><span>Clean Architecture</span><span>Microservicios</span><span>SOLID</span><span>IoC / DI</span><span>GRASP</span><span>DDD</span></div>
+          </article>
+          <article class="skill-card reveal">
+            <div class="skill-card__icon">🤖</div>
+            <h3 data-i18n="skills.ai">IA &amp; Automatización</h3>
+            <div class="chips"><span>Agentes de IA</span><span>Azure OpenAI</span><span>LLM APIs</span><span>MCP</span><span>Workflow Automation</span></div>
+          </article>
+          <article class="skill-card reveal">
+            <div class="skill-card__icon">☁️</div>
+            <h3>Cloud &amp; DevOps</h3>
+            <div class="chips"><span>Docker</span><span>Docker Compose</span><span>GitLab CI/CD</span><span>Azure DevOps</span><span>Azure</span><span>Linux</span><span>SSH</span></div>
+          </article>
+          <article class="skill-card reveal">
+            <div class="skill-card__icon">🔌</div>
+            <h3 data-i18n="skills.embedded">Embebidos &amp; Redes</h3>
+            <div class="chips"><span>Raspberry Pi</span><span>I2C / GPIO</span><span>ZeroMQ</span><span>REST</span><span>OpenAPI</span><span>OAuth2</span><span>HTTPS</span></div>
+          </article>
+          <article class="skill-card reveal">
+            <div class="skill-card__icon">✅</div>
+            <h3 data-i18n="skills.quality">Calidad &amp; Metodologías</h3>
+            <div class="chips"><span>TDD</span><span>pytest</span><span>xUnit</span><span>Postman</span><span>pylint / mypy</span><span>pre-commit</span><span>Scrum</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experiencia -->
+    <section class="section" id="experiencia">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__kicker mono">03.</span>
+          <h2 class="section__title" data-i18n="exp.title">Experiencia profesional</h2>
+        </div>
+        <ol class="timeline">
+          <li class="timeline__item reveal">
+            <div class="timeline__dot"></div>
+            <div class="timeline__card">
+              <div class="timeline__meta">
+                <span class="timeline__date mono" data-i18n="exp.j1.date">Oct 2024 — Actualidad</span>
+                <span class="timeline__org" data-i18n="exp.j1.org">Sector de Sistemas Inteligentes y Control en Tiempo Real</span>
+              </div>
+              <h3 data-i18n="exp.j1.role">Backend &amp; Full Stack Software Developer</h3>
+              <ul>
+                <li data-i18n="exp.j1.b1">Diseño y mantenimiento de la plataforma central, servicios backend y módulos de integración de hardware de un sistema crítico en tiempo real sobre Linux y dispositivos embebidos.</li>
+                <li data-i18n="exp.j1.b2">Arquitectura Hexagonal con SOLID, IoC y GRASP para desacoplar el dominio de la infraestructura de datos y dispositivos.</li>
+                <li data-i18n="exp.j1.b3">TDD y análisis de calidad automatizado con alta cobertura de pruebas unitarias, funcionales y de integración.</li>
+                <li data-i18n="exp.j1.b4">Automatización de procesos de ingeniería y supervisión de Agentes de IA para código, historias de usuario, documentación y versionado.</li>
+                <li data-i18n="exp.j1.b5">Migraciones con Alembic, mensajería distribuida cifrada, HTTPS y despliegues con Docker Compose y SSH.</li>
+              </ul>
+              <div class="chips chips--sm"><span>Python</span><span>Docker</span><span>Linux</span><span>ZeroMQ</span><span>pytest</span><span>GitLab CI</span><span>IA Agéntica</span></div>
+            </div>
+          </li>
+          <li class="timeline__item reveal">
+            <div class="timeline__dot"></div>
+            <div class="timeline__card">
+              <div class="timeline__meta">
+                <span class="timeline__date mono" data-i18n="exp.j2.date">Ago 2023 — Sep 2024</span>
+                <span class="timeline__org" data-i18n="exp.j2.org">Consultora Internacional de Tecnología</span>
+              </div>
+              <h3 data-i18n="exp.j2.role">Software Developer (.NET · React · Azure)</h3>
+              <ul>
+                <li data-i18n="exp.j2.b1">Desarrollo de soluciones backend en C#, .NET y SQL Server para aplicaciones empresariales internas y de clientes.</li>
+                <li data-i18n="exp.j2.b2">Entrega de historias de usuario en el frontend con React.</li>
+                <li data-i18n="exp.j2.b3">Suites de pruebas de integración de APIs y microservicios con Postman en múltiples ambientes.</li>
+                <li data-i18n="exp.j2.b4">Gestión de roles y permisos (IAM) en Microsoft Azure y trabajo ágil Scrum (incluyendo ceremonias en inglés) en Azure DevOps.</li>
+              </ul>
+              <div class="chips chips--sm"><span>C#</span><span>.NET</span><span>SQL Server</span><span>React</span><span>Azure</span><span>Azure DevOps</span><span>Scrum</span></div>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Proyectos -->
+    <section class="section" id="proyectos">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__kicker mono">04.</span>
+          <h2 class="section__title" data-i18n="proj.title">Proyectos destacados</h2>
+        </div>
+        <p class="section__intro reveal" data-i18n="proj.intro">Una selección de soluciones en las que he trabajado. Algunos repositorios son privados por acuerdos de confidencialidad; con gusto profundizo en su arquitectura durante una entrevista.</p>
+        <div class="projects">
+          <article class="project reveal">
+            <div class="project__top">
+              <span class="project__icon">📡</span>
+              <span class="project__tag" data-i18n="proj.tag.pro">Profesional</span>
+            </div>
+            <h3 data-i18n="proj.p1.title">Plataforma Distribuida de Control en Tiempo Real</h3>
+            <p data-i18n="proj.p1.desc">Ecosistema de microservicios en contenedores (Edge &amp; Core Server) con API REST documentada en OpenAPI, mensajería segura entre procesos, control de interfaces físicas, consola interactiva y CI/CD con pruebas automatizadas.</p>
+            <div class="chips chips--sm"><span>Python</span><span>Hexagonal</span><span>ZeroMQ</span><span>SQLAlchemy</span><span>Docker</span><span>Linux</span></div>
+          </article>
+          <article class="project reveal">
+            <div class="project__top">
+              <span class="project__icon">🧱</span>
+              <span class="project__tag" data-i18n="proj.tag.pro">Profesional</span>
+            </div>
+            <h3 data-i18n="proj.p2.title">API Empresarial con Arquitectura Limpia</h3>
+            <p data-i18n="proj.p2.desc">Servicio RESTful en .NET 8 estructurado por capas con Swagger/OpenAPI, Dockerfile multi-etapa, pipeline de integración continua y validación automática de calidad en pre-commit.</p>
+            <div class="chips chips--sm"><span>C#</span><span>.NET 8</span><span>ASP.NET Core</span><span>EF Core</span><span>Docker</span><span>GitLab CI</span></div>
+          </article>
+          <article class="project reveal">
+            <div class="project__top">
+              <span class="project__icon">🧾</span>
+              <span class="project__tag" data-i18n="proj.tag.int">Integración</span>
+            </div>
+            <h3 data-i18n="proj.p3.title">Servicio de Facturación Electrónica</h3>
+            <p data-i18n="proj.p3.desc">Implementación paralela en .NET y Python para consumir APIs de facturación electrónica con OAuth2, caché y renovación de tokens, emisión de documentos y descarga de archivos firmados.</p>
+            <div class="chips chips--sm"><span>Minimal APIs</span><span>FastAPI</span><span>Pydantic v2</span><span>OAuth2</span></div>
+          </article>
+          <article class="project reveal">
+            <div class="project__top">
+              <span class="project__icon">⚡</span>
+              <span class="project__tag" data-i18n="proj.tag.auto">Automatización</span>
+            </div>
+            <h3 data-i18n="proj.p4.title">Automatización Asíncrona de Flujos y Webhooks</h3>
+            <p data-i18n="proj.p4.desc">Bot asíncrono que integra plataformas de gestión de tiempos, mensajería corporativa y webhooks de repositorios para automatizar registros y notificaciones del equipo.</p>
+            <div class="chips chips--sm"><span>Python</span><span>asyncio</span><span>aiohttp</span><span>REST</span><span>Webhooks</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Formación y certificaciones -->
+    <section class="section" id="formacion">
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="section__kicker mono">05.</span>
+          <h2 class="section__title" data-i18n="edu.title">Formación y certificaciones</h2>
+        </div>
+        <div class="edu">
+          <div class="edu__col reveal">
+            <h3 class="edu__heading" data-i18n="edu.certs">Certificaciones</h3>
+            <div class="cert">
+              <span class="cert__badge">AI-050</span>
+              <div><strong>Develop Generative AI Solutions with Azure OpenAI Service</strong><span class="muted">Microsoft · 2024</span></div>
+            </div>
+            <div class="cert">
+              <span class="cert__badge">AI-900</span>
+              <div><strong>Microsoft Azure AI Fundamentals</strong><span class="muted">Microsoft · 2023 – 2024</span></div>
+            </div>
+            <div class="cert">
+              <span class="cert__badge">SFPC</span>
+              <div><strong>Scrum Foundation Professional Certificate</strong><span class="muted">CertiProf · 2023</span></div>
+            </div>
+          </div>
+          <div class="edu__col reveal">
+            <h3 class="edu__heading" data-i18n="edu.education">Educación</h3>
+            <div class="cert">
+              <span class="cert__badge cert__badge--alt">🎓</span>
+              <div><strong data-i18n="edu.e1">Ingeniería de Software</strong><span class="muted" data-i18n="edu.e1m">UNIMINUTO · En curso</span></div>
+            </div>
+            <div class="cert">
+              <span class="cert__badge cert__badge--alt">💻</span>
+              <div><strong data-i18n="edu.e2">Técnico Laboral en Diseño y Desarrollo de Software</strong><span class="muted">CESDE · 2023 – 2024</span></div>
+            </div>
+            <div class="cert">
+              <span class="cert__badge cert__badge--alt">🛠️</span>
+              <div><strong data-i18n="edu.e3">Técnico en Diseño y Desarrollo de Software</strong><span class="muted">SENA · 2020 – 2022</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contacto -->
+    <section class="section section--contact" id="contacto">
+      <div class="container">
+        <div class="contact reveal">
+          <span class="section__kicker mono">06.</span>
+          <h2 class="contact__title" data-i18n="contact.title">¿Construimos algo juntos?</h2>
+          <p class="contact__text" data-i18n="contact.text">Estoy abierto a oportunidades como desarrollador Full Stack, Backend o de soluciones con IA, en modalidad remota o híbrida. Escríbeme y te respondo pronto.</p>
+          <a href="mailto:jcamiloorozco02@gmail.com" class="btn btn--primary btn--lg" data-i18n="contact.cta">Enviar un correo</a>
+          <div class="contact__links">
+            <a href="https://www.linkedin.com/in/camilo-orozco-5706b8265/" target="_blank" rel="noopener">LinkedIn</a>
+            <span>·</span>
+            <a href="https://github.com/Camilo-Orozco" target="_blank" rel="noopener">GitHub</a>
+            <span>·</span>
+            <a href="assets/CV_Juan_Camilo_Zapata_ES.pdf" id="cvLink2" download data-i18n="contact.cv">CV (PDF)</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="mono">© <span id="year"></span> Juan Camilo Zapata Orozco</p>
+      <p class="muted" data-i18n="footer.built">Diseñado y desarrollado con HTML, CSS y JavaScript.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
