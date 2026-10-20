@@ -3,96 +3,1438 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Juan Camilo Zapata | Minimal Editorial Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:italic@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <title>Juan Camilo Zapata | Editorial Interactivo — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
   <style>
+    /* ==========================================================================
+       VARIABLES Y TEMAS
+       ========================================================================== */
     :root {
-      --bg: #0f1012;
-      --text: #f0f0f2;
-      --muted: #8a8d93;
-      --border: #23252a;
-      --accent: #e2e8f0;
+      --bg: #0c0d10;
+      --bg-surface: #14161c;
+      --bg-surface-elevated: #1a1c24;
+      --text: #eaeaea;
+      --text-muted: #8b8f99;
+      --text-dim: #5c606b;
+      --border: rgba(255, 255, 255, 0.08);
+      --border-strong: rgba(255, 255, 255, 0.18);
+      --accent: #e5e5e7;
+      --highlight: #7dd3fc;
+      --highlight-alt: #a78bfa;
+      --highlight-glow: rgba(125, 211, 252, 0.15);
+      --spotlight: rgba(255, 255, 255, 0.04);
+      --font-serif: 'Instrument Serif', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --max-w: 960px;
+      --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
+
+    [data-theme="light"] {
+      --bg: #fbfaf7;
+      --bg-surface: #f1ede6;
+      --bg-surface-elevated: #ffffff;
+      --text: #141518;
+      --text-muted: #5e626d;
+      --text-dim: #9aa0ad;
+      --border: rgba(0, 0, 0, 0.08);
+      --border-strong: rgba(0, 0, 0, 0.2);
+      --accent: #111215;
+      --highlight: #0284c7;
+      --highlight-alt: #7c3aed;
+      --highlight-glow: rgba(2, 132, 199, 0.12);
+      --spotlight: rgba(0, 0, 0, 0.03);
+    }
+
+    /* ==========================================================================
+       RESETS Y BASE
+       ========================================================================== */
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'Inter', sans-serif;
-      padding: 4rem 2rem;
-      line-height: 1.6;
-      max-width: 850px;
-      margin: 0 auto;
+      font-family: var(--font-sans);
+      line-height: 1.65;
+      position: relative;
+      overflow-x: hidden;
+      transition: background 0.3s ease, color 0.3s ease;
+      padding: 0 1.5rem 6rem;
     }
-    .serif { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; }
-    header { margin-bottom: 5rem; }
-    .hero-title { font-size: 3.2rem; line-height: 1.15; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
-    .hero-title em { color: var(--muted); font-style: italic; }
-    .bio { font-size: 1.15rem; color: var(--muted); max-width: 650px; margin-bottom: 2rem; }
-    .meta-nav { display: flex; gap: 1.8rem; font-size: 0.9rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1rem 0; margin-bottom: 4rem; }
-    .meta-nav a { color: var(--text); text-decoration: none; border-bottom: 1px solid transparent; }
-    .meta-nav a:hover { border-color: var(--text); }
-    .section { margin-bottom: 4.5rem; }
-    .sec-kicker { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 1.5rem; }
-    .item { display: grid; grid-template-columns: 180px 1fr; gap: 1.5rem; margin-bottom: 2.2rem; }
-    .item-date { color: var(--muted); font-size: 0.88rem; }
-    .item-title { font-size: 1.15rem; font-weight: 600; margin-bottom: 0.3rem; }
-    .item-desc { color: var(--muted); font-size: 0.95rem; }
-    .tags { margin-top: 0.5rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
-    .tag { font-size: 0.75rem; color: var(--muted); background: var(--border); padding: 0.15rem 0.5rem; border-radius: 3px; }
+
+    ::selection {
+      background: var(--highlight);
+      color: #0c0d10;
+    }
+
+    .serif { font-family: var(--font-serif); font-weight: 400; }
+    .mono { font-family: var(--font-mono); }
+
+    /* Barra de progreso de lectura */
+    #progress-bar {
+      position: fixed; top: 0; left: 0; height: 2px;
+      background: linear-gradient(90deg, var(--highlight), var(--highlight-alt));
+      z-index: 1000; width: 0%; transition: width 0.1s linear;
+    }
+
+    /* Ambient spotlight del mouse */
+    #spotlight {
+      position: fixed;
+      top: 0; left: 0;
+      width: 600px; height: 600px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--spotlight) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ==========================================================================
+       HEADER Y BARRA SUPERIOR DINÁMICA
+       ========================================================================== */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.8rem 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 4rem;
+      font-size: 0.85rem;
+      letter-spacing: -0.01em;
+    }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      color: var(--text-muted);
+    }
+    .pulse-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
+      70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+    .theme-btn {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-family: var(--font-mono);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: var(--transition);
+    }
+    .theme-btn:hover {
+      border-color: var(--text);
+      color: var(--text);
+      transform: translateY(-1px);
+    }
+
+    /* ==========================================================================
+       HERO EDITORIAL
+       ========================================================================== */
+    .hero {
+      margin-bottom: 5.5rem;
+    }
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--highlight);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .hero-title {
+      font-size: clamp(2.8rem, 6vw, 4.4rem);
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      margin-bottom: 2rem;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--text-muted);
+      display: block;
+    }
+    .hero-lead {
+      font-size: 1.2rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+      max-width: 740px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-lead strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .meta-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      font-size: 0.95rem;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 1.1rem 0;
+    }
+    .meta-nav a {
+      color: var(--text);
+      text-decoration: none;
+      position: relative;
+      transition: color 0.2s;
+    }
+    .meta-nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1px;
+      background: var(--text);
+      transition: width 0.25s ease;
+    }
+    .meta-nav a:hover::after { width: 100%; }
+
+    /* ==========================================================================
+       SECCIONES EDITORIALES
+       ========================================================================== */
+    .section {
+      margin-bottom: 6rem;
+    }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.8rem;
+      margin-bottom: 2.4rem;
+    }
+    .sec-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+    }
+    .sec-count {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      color: var(--text-dim);
+    }
+
+    /* ==========================================================================
+       VISUALIZADOR INTERACTIVO DE ARQUITECTURA (CANVAS / DIAGRAMA VIVO)
+       ========================================================================== */
+    .arch-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2.2rem 2rem;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 3.5rem;
+      transition: border-color 0.3s;
+    }
+    .arch-card:hover {
+      border-color: var(--border-strong);
+    }
+    .arch-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.8rem;
+    }
+    .arch-header h3 {
+      font-size: 1.4rem;
+      font-weight: 500;
+      margin-bottom: 0.3rem;
+    }
+    .arch-tagline {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    .arch-badge {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      background: var(--highlight-glow);
+      color: var(--highlight);
+      border: 1px solid rgba(125, 211, 252, 0.25);
+    }
+
+    /* Diagrama interactivo */
+    .arch-diagram {
+      display: grid;
+      grid-template-columns: 1fr 40px 1.2fr 40px 1fr;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1.5rem 0;
+    }
+    .arch-node {
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.4rem 1.2rem;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.25s ease;
+      text-align: center;
+    }
+    .arch-node:hover, .arch-node.active {
+      transform: translateY(-3px);
+      border-color: var(--highlight);
+      box-shadow: 0 12px 30px -10px var(--highlight-glow);
+    }
+    .arch-node-icon {
+      font-size: 1.6rem;
+      margin-bottom: 0.4rem;
+      display: block;
+    }
+    .arch-node-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+    .arch-node-sub {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    /* Conectores con flujo de partículas animado */
+    .arch-connector {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      height: 2px;
+      background: var(--border);
+    }
+    .arch-particle {
+      position: absolute;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--highlight);
+      animation: flowRight 2.2s linear infinite;
+    }
+    @keyframes flowRight {
+      0% { left: 0%; opacity: 0; }
+      20% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { left: 100%; opacity: 0; }
+    }
+
+    /* Caja de detalles interactiva del nodo seleccionado */
+    .arch-details {
+      margin-top: 1.8rem;
+      padding: 1.2rem 1.4rem;
+      background: var(--bg);
+      border: 1px dashed var(--border-strong);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .arch-details-text strong {
+      color: var(--text);
+    }
+    .arch-details-pills {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+    .arch-pill {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 0.2rem 0.5rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--text);
+    }
+
+    /* ==========================================================================
+       PROYECTOS EDITORIALES CON MAGNETIC / FLOATING PREVIEW
+       ========================================================================== */
+    .project-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .project-row {
+      display: grid;
+      grid-template-columns: 80px 1.8fr 1.2fr 40px;
+      align-items: center;
+      padding: 1.6rem 0;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      position: relative;
+      transition: padding-left 0.2s ease, opacity 0.2s ease;
+    }
+    .project-row:hover {
+      padding-left: 0.8rem;
+      border-color: var(--text);
+    }
+    .project-num {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-dim);
+    }
+    .project-name {
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .project-category {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+    .project-arrow {
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      text-align: right;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+    .project-row:hover .project-arrow {
+      transform: translate(3px, -3px);
+      color: var(--highlight);
+    }
+
+    /* Flotante / Floating Card seguidora de cursor */
+    #floating-preview {
+      position: fixed;
+      width: 320px;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-strong);
+      border-radius: 12px;
+      padding: 1.2rem 1.4rem;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.5);
+      pointer-events: none;
+      z-index: 99;
+      opacity: 0;
+      visibility: hidden;
+      transform: translate(-50%, -50%) scale(0.92);
+      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+      backdrop-filter: blur(12px);
+    }
+    #floating-preview.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(25px, -50%) scale(1);
+    }
+    .fp-badge {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--highlight);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .fp-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+    .fp-desc {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 0.8rem;
+    }
+    .fp-tags {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+    .fp-tag {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+    }
+
+    /* ==========================================================================
+       MODAL DE INSPECCIÓN PROFUNDA (DEEP DIVE MODAL)
+       ========================================================================== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(12, 13, 16, 0.8);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .modal-backdrop.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .modal-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: 16px;
+      max-width: 680px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 2.2rem 2.4rem;
+      transform: translateY(20px) scale(0.96);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 35px 80px -20px rgba(0, 0, 0, 0.7);
+    }
+    .modal-backdrop.open .modal-card {
+      transform: translateY(0) scale(1);
+    }
+    .modal-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+    }
+    .modal-close {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      cursor: pointer;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 1.1rem;
+      transition: var(--transition);
+    }
+    .modal-close:hover {
+      border-color: var(--text);
+      color: var(--text);
+    }
+    .modal-tabs {
+      display: flex;
+      gap: 1rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1.6rem;
+    }
+    .modal-tab {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      padding: 0.6rem 0;
+      cursor: pointer;
+      position: relative;
+      transition: color 0.2s;
+    }
+    .modal-tab.active {
+      color: var(--text);
+      font-weight: 500;
+    }
+    .modal-tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 2px;
+      background: var(--highlight);
+    }
+    .modal-body {
+      min-height: 200px;
+    }
+    .code-box {
+      background: #090a0d;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.2rem;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: #cbd5e1;
+      overflow-x: auto;
+      line-height: 1.7;
+      position: relative;
+    }
+    .copy-btn {
+      position: absolute;
+      top: 0.8rem; right: 0.8rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.72rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: var(--font-mono);
+      transition: var(--transition);
+    }
+    .copy-btn:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    /* ==========================================================================
+       MATRIZ DE HABILIDADES CON CROSS-HIGHLIGHTING
+       ========================================================================== */
+    .skills-interactive {
+      margin-bottom: 4rem;
+    }
+    .skills-instruction {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      font-family: var(--font-mono);
+      margin-bottom: 1rem;
+    }
+    .skills-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+    .skill-chip {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      padding: 0.45rem 0.9rem;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg-surface);
+      color: var(--text);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+    .skill-chip:hover, .skill-chip.active {
+      border-color: var(--highlight);
+      background: var(--highlight-glow);
+      color: var(--highlight);
+      transform: translateY(-2px);
+    }
+
+    /* Cross-highlighting states */
+    .highlight-match {
+      border-color: var(--highlight) !important;
+      background: rgba(125, 211, 252, 0.04) !important;
+      opacity: 1 !important;
+    }
+    .highlight-dim {
+      opacity: 0.28 !important;
+      filter: grayscale(80%);
+    }
+
+    /* ==========================================================================
+       TIMELINE DE EXPERIENCIA EDITORIAL
+       ========================================================================== */
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 2rem;
+      padding: 2.2rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: opacity 0.2s, background 0.2s, border-color 0.2s;
+    }
+    .timeline-date {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .timeline-role {
+      font-size: 1.3rem;
+      font-weight: 500;
+      margin-bottom: 0.35rem;
+    }
+    .timeline-org {
+      font-size: 0.95rem;
+      color: var(--highlight);
+      margin-bottom: 0.8rem;
+    }
+    .timeline-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 1rem;
+    }
+    .timeline-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+    .timeline-tag {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      background: var(--border);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    /* ==========================================================================
+       CONTACTO & FOOTER
+       ========================================================================== */
+    .contact-box {
+      padding: 3.5rem 0;
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .contact-title {
+      font-size: 2.4rem;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .contact-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .copy-email-btn {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 1rem 1.4rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-family: var(--font-mono);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: var(--transition);
+    }
+    .copy-email-btn:hover {
+      border-color: var(--text);
+      transform: translateY(-2px);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      color: var(--text-dim);
+      font-size: 0.82rem;
+      font-family: var(--font-mono);
+    }
+
+    /* ==========================================================================
+       RESPONSIVE
+       ========================================================================== */
+    @media (max-width: 768px) {
+      .top-bar { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .arch-diagram {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      .arch-connector {
+        height: 20px; width: 2px;
+        margin: 0 auto;
+      }
+      .arch-particle {
+        animation: flowDown 2.2s linear infinite;
+      }
+      @keyframes flowDown {
+        0% { top: 0%; opacity: 0; }
+        20% { opacity: 1; }
+        80% { opacity: 1; }
+        100% { top: 100%; opacity: 0; }
+      }
+      .project-row {
+        grid-template-columns: 40px 1fr 30px;
+        gap: 0.5rem;
+      }
+      .project-category { display: none; }
+      .timeline-item {
+        grid-template-columns: 1fr;
+        gap: 0.6rem;
+      }
+      .contact-box {
+        grid-template-columns: 1fr;
+      }
+      #floating-preview { display: none !important; }
+    }
   </style>
 </head>
 <body>
-  <header>
-    <h1 class="hero-title serif">Juan Camilo Zapata — <em>Software Engineer especializado en Backend, Arquitectura e IA.</em></h1>
-    <p class="bio">Construyendo servicios distribuidos, APIs empresariales y soluciones resilientes con .NET, Python y React. Enfoque riguroso en Arquitectura Hexagonal, SOLID y TDD en Medellín, Colombia.</p>
-    <div class="meta-nav">
-      <a href="https://github.com/CamiloOrozco-dev" target="_blank">GitHub</a>
-      <a href="https://linkedin.com/in/camilo-orozco-5706b8265" target="_blank">LinkedIn</a>
-      <a href="mailto:jcamiloorozco02@gmail.com">Contacto</a>
-      <a href="../assets/CV_Juan_Camilo_Zapata_ES.pdf" download>Currículum (PDF)</a>
-    </div>
-  </header>
+  <!-- Barra de progreso superior -->
+  <div id="progress-bar"></div>
 
-  <main>
-    <div class="section">
-      <div class="sec-kicker">01 / Experiencia</div>
-      <div class="item">
-        <div class="item-date">2024 — Presente</div>
-        <div>
-          <div class="item-title">Backend & Full Stack Engineer</div>
-          <div style="font-size: 0.9rem; color: #a1a1aa; margin-bottom: 0.4rem;">Sector de Control en Tiempo Real y Movilidad</div>
-          <div class="item-desc">Diseño de arquitectura hexagonal en Python y Linux embebido. Implementación de pruebas TDD, automatizaciones con agentes de IA y mensajería distribuida segura.</div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="item-date">2023 — 2024</div>
-        <div>
-          <div class="item-title">Software Developer (.NET & React)</div>
-          <div style="font-size: 0.9rem; color: #a1a1aa; margin-bottom: 0.4rem;">Consultoría Internacional de Software</div>
-          <div class="item-desc">Desarrollo de servicios empresariales en .NET y SQL Server, interfaces en React y pruebas de integración bajo metodología Scrum en Azure DevOps.</div>
-        </div>
-      </div>
-    </div>
+  <!-- Ambient spotlight que sigue el mouse -->
+  <div id="spotlight"></div>
 
-    <div class="section">
-      <div class="sec-kicker">02 / Selección de Proyectos</div>
-      <div class="item">
-        <div class="item-date">Plataforma Edge</div>
-        <div>
-          <div class="item-title">Control Distribuido en Tiempo Real</div>
-          <div class="item-desc">Microservicios en contenedores con API REST documentada en OpenAPI, mensajería asíncrona cifrada y TDD estricto.</div>
-          <div class="tags"><span class="tag">Python</span><span class="tag">Hexagonal</span><span class="tag">Docker</span><span class="tag">Linux</span></div>
+  <!-- Tarjeta flotante interactiva de previsualización -->
+  <div id="floating-preview">
+    <div class="fp-badge" id="fp-badge">PROYECTO DESTACADO</div>
+    <div class="fp-title" id="fp-title">Título del Proyecto</div>
+    <div class="fp-desc" id="fp-desc">Descripción detallada de la arquitectura.</div>
+    <div class="fp-tags" id="fp-tags">
+      <span class="fp-tag">Python</span>
+      <span class="fp-tag">Docker</span>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Top bar con reloj dinámico y selector de tema -->
+    <header class="top-bar">
+      <div class="status-badge">
+        <span class="pulse-dot"></span>
+        <span>Medellín, Colombia · <span id="live-clock" class="mono">--:--:--</span> (UTC-5)</span>
+      </div>
+      <div class="top-actions">
+        <a href="index.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.8rem; font-family: var(--font-mono);">← Galería</a>
+        <button class="theme-btn" id="theme-btn">
+          <span id="theme-icon">◐</span>
+          <span id="theme-label">Tema</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Hero Editorial -->
+    <section class="hero">
+      <div class="hero-eyebrow">
+        <span>00 // INGENIERO DE SOFTWARE FULL STACK & BACKEND</span>
+      </div>
+      <h1 class="hero-title serif">
+        Juan Camilo Zapata
+        <em>Arquitectura Hexagonal, Sistemas Distribuidos e Inteligencia Artificial Agéntica.</em>
+      </h1>
+      <p class="hero-lead">
+        Especializado en diseñar servicios de misión crítica, APIs de alto rendimiento e integración hardware-software sobre <strong>Linux</strong> y <strong>Docker</strong>. Enfoque disciplinado en <strong>TDD</strong>, principios <strong>SOLID</strong> y supervisión de agentes autónomos para acelerar la ingeniería de software.
+      </p>
+      <nav class="meta-nav" aria-label="Enlaces rápidos">
+        <a href="#arquitectura">01 / Arquitectura</a>
+        <a href="#proyectos">02 / Proyectos</a>
+        <a href="#experiencia">03 / Experiencia</a>
+        <a href="https://github.com/CamiloOrozco-dev" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="https://linkedin.com/in/camilo-orozco-5706b8265" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="../assets/CV_Juan_Camilo_Zapata_ES.pdf" download>Currículum (PDF) ↓</a>
+      </nav>
+    </section>
+
+    <!-- SECCIÓN 01: VISUALIZADOR DINÁMICO DE ARQUITECTURA -->
+    <section class="section" id="arquitectura">
+      <div class="section-head">
+        <div class="sec-kicker">01 // Ecosistema Técnico Interactivo</div>
+        <div class="sec-count">EXPLORA EL FLUJO</div>
+      </div>
+
+      <div class="arch-card">
+        <div class="arch-header">
+          <div>
+            <h3 class="serif">Plataforma de Control Distribuido &amp; Microservicios</h3>
+            <div class="arch-tagline">Haz clic en cada nodo para inspeccionar los contratos, protocolos y desacoplamiento de capas.</div>
+          </div>
+          <div class="arch-badge">HEXAGONAL ARCHITECTURE</div>
+        </div>
+
+        <div class="arch-diagram">
+          <!-- Nodo 1: Dispositivos Edge -->
+          <div class="arch-node active" data-node="edge">
+            <span class="arch-node-icon">⚡</span>
+            <div class="arch-node-title">Edge Device</div>
+            <div class="arch-node-sub">Linux / Hardware</div>
+          </div>
+
+          <!-- Conector animado 1 -->
+          <div class="arch-connector">
+            <div class="arch-particle"></div>
+          </div>
+
+          <!-- Nodo 2: Hexagonal Core -->
+          <div class="arch-node" data-node="core">
+            <span class="arch-node-icon">⬡</span>
+            <div class="arch-node-title">Core Server</div>
+            <div class="arch-node-sub">Domain &amp; Ports</div>
+          </div>
+
+          <!-- Conector animado 2 -->
+          <div class="arch-connector">
+            <div class="arch-particle"></div>
+          </div>
+
+          <!-- Nodo 3: Mensajería & Agentes -->
+          <div class="arch-node" data-node="broker">
+            <span class="arch-node-icon">🤖</span>
+            <div class="arch-node-title">AI &amp; Broker</div>
+            <div class="arch-node-sub">Async Automation</div>
+          </div>
+        </div>
+
+        <!-- Panel de detalle dinámico del nodo seleccionado -->
+        <div class="arch-details" id="arch-details">
+          <div class="arch-details-text" id="arch-text">
+            <strong>Edge &amp; Hardware:</strong> Control en tiempo real sobre Raspberry Pi/Linux, captura de periféricos, mensajería cifrada y bajo acoplamiento con la capa de aplicación.
+          </div>
+          <div class="arch-details-pills" id="arch-pills">
+            <span class="arch-pill">Linux</span>
+            <span class="arch-pill">Python</span>
+            <span class="arch-pill">GPIO/Serial</span>
+            <span class="arch-pill">Docker</span>
+          </div>
         </div>
       </div>
-      <div class="item">
-        <div class="item-date">Backend .NET 8</div>
-        <div>
-          <div class="item-title">API Empresarial por Capas</div>
-          <div class="item-desc">Servicio REST estructurado según Clean Architecture, validaciones automatizadas de calidad y pipelines de CI/CD.</div>
-          <div class="tags"><span class="tag">C#</span><span class="tag">ASP.NET Core</span><span class="tag">SQL Server</span></div>
+    </section>
+
+    <!-- SECCIÓN 02: HABILIDADES INTERACTIVAS (CROSS-HIGHLIGHTING) -->
+    <section class="section">
+      <div class="section-head">
+        <div class="sec-kicker">02 // Filtro Dinámico por Habilidades</div>
+        <div class="sec-count">CLICK PARA FILTRAR PROYECTOS</div>
+      </div>
+      <div class="skills-interactive">
+        <div class="skills-instruction">Pasa el cursor o selecciona una tecnología para iluminar los proyectos y experiencias donde fue aplicada:</div>
+        <div class="skills-cloud" id="skillsCloud">
+          <button class="skill-chip" data-skill="all">Mostrar todo</button>
+          <button class="skill-chip" data-skill="dotnet">.NET / C#</button>
+          <button class="skill-chip" data-skill="python">Python</button>
+          <button class="skill-chip" data-skill="react">React</button>
+          <button class="skill-chip" data-skill="hexagonal">Arquitectura Hexagonal</button>
+          <button class="skill-chip" data-skill="docker">Docker &amp; Linux</button>
+          <button class="skill-chip" data-skill="tdd">TDD &amp; Calidad</button>
+          <button class="skill-chip" data-skill="ai">IA Agéntica</button>
+          <button class="skill-chip" data-skill="sql">SQL Server &amp; PostgreSQL</button>
         </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 03: PROYECTOS SELECCIONADOS CON MAGNETIC PREVIEW -->
+    <section class="section" id="proyectos">
+      <div class="section-head">
+        <div class="sec-kicker">03 // Selección de Proyectos de Ingeniería</div>
+        <div class="sec-count">[ 04 SOLUCIONES ]</div>
+      </div>
+
+      <div class="project-table" id="projectList">
+        <!-- Proyecto 1 -->
+        <div class="project-row" 
+             data-id="1" 
+             data-tech="python hexagonal docker tdd"
+             data-title="Plataforma de Control Distribuido"
+             data-desc="Ecosistema de microservicios contenedorizados con API REST OpenAPI, mensajería asíncrona segura y suites de pruebas automatizadas."
+             data-badge="SISTEMAS DISTRIBUIDOS · EDGE & CORE"
+             data-tags="Python,Hexagonal,Docker,Linux,TDD">
+          <span class="project-num">/ 01</span>
+          <div class="project-name">
+            Plataforma de Control en Tiempo Real
+          </div>
+          <div class="project-category">Microservicios &amp; Edge Computing</div>
+          <div class="project-arrow">↗</div>
+        </div>
+
+        <!-- Proyecto 2 -->
+        <div class="project-row" 
+             data-id="2" 
+             data-tech="dotnet sql tdd"
+             data-title="API Empresarial por Capas (.NET 8)"
+             data-desc="API RESTful de alto rendimiento bajo Clean Architecture, multi-stage Dockerfile, CI/CD con Azure DevOps y validaciones de calidad."
+             data-badge="BACKEND EMPRESARIAL · CLEAN ARCHITECTURE"
+             data-tags=".NET 8,C#,SQL Server,Docker,Clean Arch">
+          <span class="project-num">/ 02</span>
+          <div class="project-name">
+            API Empresarial Clean Architecture
+          </div>
+          <div class="project-category">.NET 8 · Enterprise Backend</div>
+          <div class="project-arrow">↗</div>
+        </div>
+
+        <!-- Proyecto 3 -->
+        <div class="project-row" 
+             data-id="3" 
+             data-tech="python dotnet"
+             data-title="Servicio de Facturación Electrónica"
+             data-desc="Implementaciones paralelas en .NET y Python consumiendo APIs fiscales con OAuth2, caché y renovación de tokens, emisión asíncrona y firma digital."
+             data-badge="INTEGRACIÓN DE APIS · FACTURACIÓN ELECTRÓNICA"
+             data-tags="Python,C#,OAuth2,Integraciones">
+          <span class="project-num">/ 03</span>
+          <div class="project-name">
+            Integración &amp; Facturación Electrónica
+          </div>
+          <div class="project-category">OAuth2 · Tokens · Firmas</div>
+          <div class="project-arrow">↗</div>
+        </div>
+
+        <!-- Proyecto 4 -->
+        <div class="project-row" 
+             data-id="4" 
+             data-tech="ai python docker"
+             data-title="Automatización de Flujos con Agentes IA"
+             data-desc="Sistema reactivo asíncrono que integra webhooks de repositorios, registro de tiempos y mensajería en equipo, orquestado mediante agentes de IA."
+             data-badge="AUTOMATIZACIÓN · IA AGÉNTICA"
+             data-tags="Python,Agentes IA,Webhooks,AsyncIO">
+          <span class="project-num">/ 04</span>
+          <div class="project-name">
+            Automatización de Flujos &amp; Webhooks
+          </div>
+          <div class="project-category">IA Agéntica · DevOps Bots</div>
+          <div class="project-arrow">↗</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 04: TRAYECTORIA PROFESIONAL -->
+    <section class="section" id="experiencia">
+      <div class="section-head">
+        <div class="sec-kicker">04 // Experiencia Profesional</div>
+        <div class="sec-count">TRAYECTORIA</div>
+      </div>
+
+      <div class="timeline" id="experienceList">
+        <!-- Exp 1 -->
+        <article class="timeline-item" data-tech="python hexagonal docker tdd ai">
+          <div class="timeline-date">Oct 2024 — Presente</div>
+          <div>
+            <h3 class="timeline-role">Backend &amp; Full Stack Software Developer</h3>
+            <div class="timeline-org">Sector de Sistemas Inteligentes &amp; Control en Tiempo Real</div>
+            <p class="timeline-desc">
+              Diseño y mantenimiento de la plataforma central y servicios de backend para sistemas de misión crítica sobre Linux y hardware dedicado. Aplicación estricta de Arquitectura Hexagonal con SOLID, IoC y GRASP para aislar el dominio de negocio. Implementación de TDD, pipelines CI/CD y supervisión de agentes de Inteligencia Artificial para automatizar tareas de ingeniería de software.
+            </p>
+            <div class="timeline-tags">
+              <span class="timeline-tag">Python</span>
+              <span class="timeline-tag">Arquitectura Hexagonal</span>
+              <span class="timeline-tag">Linux</span>
+              <span class="timeline-tag">Docker</span>
+              <span class="timeline-tag">TDD</span>
+              <span class="timeline-tag">Agentes IA</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Exp 2 -->
+        <article class="timeline-item" data-tech="dotnet react sql">
+          <div class="timeline-date">Ago 2023 — Sep 2024</div>
+          <div>
+            <h3 class="timeline-role">Software Developer (.NET · React · Azure)</h3>
+            <div class="timeline-org">Firma Internacional de Consultoría de Software</div>
+            <p class="timeline-desc">
+              Construcción de soluciones backend con C#, .NET y SQL Server para aplicaciones empresariales de alta demanda. Desarrollo de interfaces de usuario con React y ejecución de pruebas de integración para APIs y microservicios. Gestión de identidades y permisos (IAM) en Azure bajo metodología ágil Scrum en Azure DevOps.
+            </p>
+            <div class="timeline-tags">
+              <span class="timeline-tag">C# / .NET</span>
+              <span class="timeline-tag">React</span>
+              <span class="timeline-tag">SQL Server</span>
+              <span class="timeline-tag">Azure DevOps</span>
+              <span class="timeline-tag">Scrum</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 05: CONTACTO EDITORIAL -->
+    <section class="section" id="contacto">
+      <div class="contact-box">
+        <div>
+          <div class="sec-kicker" style="margin-bottom: 0.8rem;">05 // CONTACTO DIRECTO</div>
+          <h2 class="contact-title serif">
+            Construyamos software sólido y escalable.
+          </h2>
+          <p style="color: var(--text-muted); font-size: 1.05rem;">
+            Disponible para roles como Backend Engineer, Full Stack o Desarrollador de Soluciones con Inteligencia Artificial.
+          </p>
+        </div>
+        <div class="contact-actions">
+          <button class="copy-email-btn" id="copyEmailBtn">
+            <span>jcamiloorozco02@gmail.com</span>
+            <span id="copyFeedback" class="mono" style="font-size: 0.78rem; color: var(--highlight);">[ Copiar ]</span>
+          </button>
+          <div style="display: flex; gap: 1rem;">
+            <a href="https://linkedin.com/in/camilo-orozco-5706b8265" target="_blank" rel="noopener" class="theme-btn" style="flex: 1; justify-content: center; padding: 0.8rem;">
+              LinkedIn ↗
+            </a>
+            <a href="https://github.com/CamiloOrozco-dev" target="_blank" rel="noopener" class="theme-btn" style="flex: 1; justify-content: center; padding: 0.8rem;">
+              GitHub ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div>JUAN CAMILO ZAPATA — MEDELLÍN, COLOMBIA</div>
+      <div>HECHO CON HTML, CSS &amp; VANILLA JS</div>
+    </footer>
+  </div>
+
+  <!-- MODAL DE INSPECCIÓN PROFUNDA DE PROYECTO -->
+  <div class="modal-backdrop" id="deepDiveModal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-card">
+      <div class="modal-top">
+        <div>
+          <span class="arch-badge" id="modalBadge">ARQUITECTURA</span>
+          <h2 class="serif" id="modalTitle" style="font-size: 1.8rem; margin-top: 0.4rem;">Título del Proyecto</h2>
+        </div>
+        <button class="modal-close" id="modalClose" aria-label="Cerrar modal">&times;</button>
+      </div>
+
+      <div class="modal-tabs">
+        <button class="modal-tab active" data-tab="arch">Arquitectura &amp; Diseño</button>
+        <button class="modal-tab" data-tab="code">Código Ilustrativo</button>
+        <button class="modal-tab" data-tab="impact">Métricas &amp; Calidad</button>
+      </div>
+
+      <div class="modal-body" id="modalBody">
+        <!-- El contenido se inyecta dinámicamente con JavaScript -->
       </div>
     </div>
-  </main>
+  </div>
+
+  <!-- JAVASCRIPT DINÁMICO & INTERACTIVO -->
+  <script>
+    (() => {
+      "use strict";
+
+      // 1. Reloj dinámico de Medellín en tiempo real
+      function updateClock() {
+        const now = new Date();
+        const options = {
+          timeZone: "America/Bogota",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: true
+        };
+        const formatter = new Intl.DateTimeFormat("en-US", options);
+        const clockEl = document.getElementById("live-clock");
+        if (clockEl) clockEl.textContent = formatter.format(now);
+      }
+      setInterval(updateClock, 1000);
+      updateClock();
+
+      // 2. Barra de progreso de scroll
+      window.addEventListener("scroll", () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = (scrollTop / docHeight) * 100;
+        const bar = document.getElementById("progress-bar");
+        if (bar) bar.style.width = `${progress}%`;
+      }, { passive: true });
+
+      // 3. Ambient Spotlight que sigue el cursor
+      const spotlight = document.getElementById("spotlight");
+      let mouseX = window.innerWidth / 2;
+      let mouseY = window.innerHeight / 2;
+      window.addEventListener("pointermove", (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        if (spotlight) {
+          spotlight.style.left = `${mouseX}px`;
+          spotlight.style.top = `${mouseY}px`;
+        }
+      }, { passive: true });
+
+      // 4. Modo Oscuro / Modo Papel Editorial
+      const themeBtn = document.getElementById("theme-btn");
+      const themeLabel = document.getElementById("theme-label");
+      function setTheme(theme) {
+        if (theme === "light") {
+          document.documentElement.setAttribute("data-theme", "light");
+          if (themeLabel) themeLabel.textContent = "Modo Noche";
+        } else {
+          document.documentElement.removeAttribute("data-theme");
+          if (themeLabel) themeLabel.textContent = "Modo Día";
+        }
+        localStorage.setItem("editorial-theme", theme);
+      }
+      const savedTheme = localStorage.getItem("editorial-theme") || 
+        (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+      setTheme(savedTheme);
+
+      if (themeBtn) {
+        themeBtn.addEventListener("click", () => {
+          const isLight = document.documentElement.getAttribute("data-theme") === "light";
+          setTheme(isLight ? "dark" : "light");
+        });
+      }
+
+      // 5. Diagrama interactivo de arquitectura (Nodos y contratos)
+      const nodeData = {
+        edge: {
+          text: "<strong>Edge &amp; Hardware:</strong> Control en tiempo real sobre Raspberry Pi y Linux, captura de periféricos (GPIO, serial, sensores), mensajería cifrada y aislamiento estricto respecto a la lógica de negocio.",
+          pills: ["Linux", "Python", "GPIO / Serial", "Docker Compose"]
+        },
+        core: {
+          text: "<strong>Hexagonal Core:</strong> Arquitectura de Puertos y Adaptadores. La lógica de dominio es pura y agnóstica a la base de datos o frameworks. Validada exhaustivamente mediante pruebas unitarias con TDD.",
+          pills: ["SOLID", "IoC Container", "TDD", "Alembic", "SQLAlchemy"]
+        },
+        broker: {
+          text: "<strong>Broker &amp; Automatización IA:</strong> Orquestación asíncrona de eventos, webhooks reactivos y agentes de Inteligencia Artificial que auditan calidad, generan documentación y supervisan despliegues.",
+          pills: ["Agentes IA", "Webhooks", "Distributed Messaging", "OpenAPI"]
+        }
+      };
+
+      const archNodes = document.querySelectorAll(".arch-node");
+      const archText = document.getElementById("arch-text");
+      const archPills = document.getElementById("arch-pills");
+
+      archNodes.forEach(node => {
+        node.addEventListener("click", () => {
+          archNodes.forEach(n => n.classList.remove("active"));
+          node.classList.add("active");
+          const key = node.dataset.node;
+          const info = nodeData[key];
+          if (info && archText && archPills) {
+            archText.innerHTML = info.text;
+            archPills.innerHTML = info.pills.map(p => `<span class="arch-pill">${p}</span>`).join("");
+          }
+        });
+      });
+
+      // 6. Magnetic / Floating Preview en Proyectos
+      const floatingPreview = document.getElementById("floating-preview");
+      const fpBadge = document.getElementById("fp-badge");
+      const fpTitle = document.getElementById("fp-title");
+      const fpDesc = document.getElementById("fp-desc");
+      const fpTags = document.getElementById("fp-tags");
+      const projectRows = document.querySelectorAll(".project-row");
+
+      projectRows.forEach(row => {
+        row.addEventListener("mouseenter", (e) => {
+          if (window.innerWidth <= 768) return;
+          fpBadge.textContent = row.dataset.badge || "PROYECTO";
+          fpTitle.textContent = row.dataset.title || "";
+          fpDesc.textContent = row.dataset.desc || "";
+          const tags = (row.dataset.tags || "").split(",").filter(Boolean);
+          fpTags.innerHTML = tags.map(t => `<span class="fp-tag">${t}</span>`).join("");
+          floatingPreview.classList.add("active");
+        });
+
+        row.addEventListener("mousemove", (e) => {
+          if (window.innerWidth <= 768) return;
+          floatingPreview.style.left = `${e.clientX}px`;
+          floatingPreview.style.top = `${e.clientY}px`;
+        });
+
+        row.addEventListener("mouseleave", () => {
+          floatingPreview.classList.remove("active");
+        });
+      });
+
+      // 7. Modal de Inspección Profunda (Deep Dive)
+      const modal = document.getElementById("deepDiveModal");
+      const modalClose = document.getElementById("modalClose");
+      const modalTitle = document.getElementById("modalTitle");
+      const modalBadge = document.getElementById("modalBadge");
+      const modalBody = document.getElementById("modalBody");
+      const modalTabs = document.querySelectorAll(".modal-tab");
+
+      const deepDiveContent = {
+        "1": {
+          title: "Plataforma de Control Distribuido en Tiempo Real",
+          badge: "SISTEMAS DISTRIBUIDOS · PYTHON & LINUX",
+          arch: `<p style="margin-bottom: 1rem; color: var(--text-muted);">
+                   Arquitectura dividida en dos capas: un servidor central de control (Core Server) y agentes embebidos periféricos (Edge Devices) en Linux. 
+                 </p>
+                 <ul style="padding-left: 1.2rem; color: var(--text-muted); line-height: 1.8;">
+                   <li><strong style="color:var(--text);">Desacoplamiento:</strong> Los módulos de hardware implementan contratos de interfaz (Puertos) aislados del dominio.</li>
+                   <li><strong style="color:var(--text);">Seguridad:</strong> Mensajería cifrada entre procesos y comunicación HTTPS/SSH.</li>
+                   <li><strong style="color:var(--text);">Contenedores:</strong> Despliegue modular orquestado con Docker Compose.</li>
+                 </ul>`,
+          code: `<div class="code-box">
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.parentElement.innerText); this.textContent='Copiado!';">Copiar</button>
+<span style="color:#c084fc;">class</span> <span style="color:#7dd3fc;">DevicePort</span>(Protocol):
+    <span style="color:#94a3b8;">"""Puerto primario de control de hardware"""</span>
+    <span style="color:#c084fc;">def</span> <span style="color:#fbbf24;">send_command</span>(self, payload: <span style="color:#7dd3fc;">dict</span>) -> <span style="color:#7dd3fc;">bool</span>: ...
+    <span style="color:#c084fc;">def</span> <span style="color:#fbbf24;">read_telemetry</span>(self) -> <span style="color:#7dd3fc;">TelemetryData</span>: ...
+
+<span style="color:#c084fc;">class</span> <span style="color:#7dd3fc;">DeviceService</span>:
+    <span style="color:#c084fc;">def</span> <span style="color:#fbbf24;">__init__</span>(self, device: <span style="color:#7dd3fc;">DevicePort</span>):
+        self._device = device <span style="color:#94a3b8;"># Inyección de dependencias</span></div>`,
+          impact: `<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.5rem;">
+                     <div style="background: var(--bg); border: 1px solid var(--border); padding: 1rem; border-radius: 8px;">
+                       <div class="serif" style="font-size: 2rem; color: var(--highlight);">90%+</div>
+                       <div style="font-size: 0.85rem; color: var(--text-muted);">Cobertura de pruebas con TDD</div>
+                     </div>
+                     <div style="background: var(--bg); border: 1px solid var(--border); padding: 1rem; border-radius: 8px;">
+                       <div class="serif" style="font-size: 2rem; color: var(--highlight-alt);">&lt; 40ms</div>
+                       <div style="font-size: 0.85rem; color: var(--text-muted);">Latencia en despacho de comandos</div>
+                     </div>
+                   </div>`
+        },
+        "2": {
+          title: "API Empresarial por Capas (.NET 8)",
+          badge: "ENTERPRISE · CLEAN ARCHITECTURE",
+          arch: `<p style="margin-bottom: 1rem; color: var(--text-muted);">
+                   Estructuración estricta en 4 capas concéntricas: Domain, Application, Infrastructure y Presentation (Web API).
+                 </p>
+                 <ul style="padding-left: 1.2rem; color: var(--text-muted); line-height: 1.8;">
+                   <li><strong style="color:var(--text);">Patrón Mediator:</strong> Desacoplamiento de casos de uso mediante CQRS y validadores de pipeline.</li>
+                   <li><strong style="color:var(--text);">Contenedores:</strong> Multi-stage build optimizado para reducir la superficie de ataque y tamaño de imagen.</li>
+                 </ul>`,
+          code: `<div class="code-box">
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.parentElement.innerText); this.textContent='Copiado!';">Copiar</button>
+<span style="color:#c084fc;">public record</span> <span style="color:#7dd3fc;">CreateOrderCommand</span>(<span style="color:#7dd3fc;">Guid</span> CustomerId, <span style="color:#7dd3fc;">decimal</span> Total) 
+    : <span style="color:#7dd3fc;">IRequest&lt;Result&lt;Guid&gt;&gt;</span>;
+
+<span style="color:#c084fc;">public class</span> <span style="color:#7dd3fc;">CreateOrderHandler</span> : <span style="color:#7dd3fc;">IRequestHandler&lt;CreateOrderCommand, Result&lt;Guid&gt;&gt;</span>
+{
+    <span style="color:#c084fc;">public async</span> <span style="color:#7dd3fc;">Task&lt;Result&lt;Guid&gt;&gt;</span> <span style="color:#fbbf24;">Handle</span>(<span style="color:#7dd3fc;">CreateOrderCommand</span> cmd, <span style="color:#7dd3fc;">CancellationToken</span> ct)
+    {
+        <span style="color:#94a3b8;">// Ejecución de invariantes de dominio</span>
+        <span style="color:#c084fc;">return</span> <span style="color:#7dd3fc;">Result</span>.<span style="color:#fbbf24;">Success</span>(<span style="color:#7dd3fc;">Guid</span>.<span style="color:#fbbf24;">NewGuid</span>());
+    }
+}</div>`,
+          impact: `<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.5rem;">
+                     <div style="background: var(--bg); border: 1px solid var(--border); padding: 1rem; border-radius: 8px;">
+                       <div class="serif" style="font-size: 2rem; color: var(--highlight);">100%</div>
+                       <div style="font-size: 0.85rem; color: var(--text-muted);">Contratos Swagger / OpenAPI verificados</div>
+                     </div>
+                     <div style="background: var(--bg); border: 1px solid var(--border); padding: 1rem; border-radius: 8px;">
+                       <div class="serif" style="font-size: 2rem; color: var(--highlight-alt);">CI/CD</div>
+                       <div style="font-size: 0.85rem; color: var(--text-muted);">Azure DevOps con gated checks automáticos</div>
+                     </div>
+                   </div>`
+        },
+        "3": {
+          title: "Servicio de Facturación Electrónica & OAuth2",
+          badge: "INTEGRACIÓN CRÍTICA · TOKEN CACHE",
+          arch: `<p style="margin-bottom: 1rem; color: var(--text-muted);">
+                   Arquitectura resiliente para consumo de APIs tributarias con políticas de reintento exponencial y renovación proactiva de tokens OAuth2.
+                 </p>`,
+          code: `<div class="code-box">
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.parentElement.innerText); this.textContent='Copiado!';">Copiar</button>
+<span style="color:#c084fc;">async def</span> <span style="color:#fbbf24;">get_valid_token</span>(self) -> <span style="color:#7dd3fc;">str</span>:
+    <span style="color:#c084fc;">if</span> self._token_cache.is_expired():
+        self._token_cache = <span style="color:#c084fc;">await</span> self._renew_oauth_token()
+    <span style="color:#c084fc;">return</span> self._token_cache.access_token</div>`,
+          impact: `<p style="color: var(--text-muted);">Cero disrupciones en emisión gracias a renovación concurrente con locking distribuido.</p>`
+        },
+        "4": {
+          title: "Automatización de Flujos & Agentes de IA",
+          badge: "AGENTIC AI · DEVOPS WORKFLOWS",
+          arch: `<p style="margin-bottom: 1rem; color: var(--text-muted);">
+                   Pipeline reactivo basado en Webhooks de repositorios y mensajería en equipo para automatizar control de horas, generación de minutas y validaciones pre-commit.
+                 </p>`,
+          code: `<div class="code-box">
+<button class="copy-btn" onclick="navigator.clipboard.writeText(this.parentElement.innerText); this.textContent='Copiado!';">Copiar</button>
+<span style="color:#c084fc;">async def</span> <span style="color:#fbbf24;">on_pr_opened</span>(payload: <span style="color:#7dd3fc;">WebhookEvent</span>):
+    diff = <span style="color:#c084fc;">await</span> git_service.fetch_diff(payload.pr_id)
+    review = <span style="color:#c084fc;">await</span> ai_agent.audit_code_standards(diff)
+    <span style="color:#c084fc;">await</span> notify_channel(review.summary)</div>`,
+          impact: `<p style="color: var(--text-muted);">Ahorro de más de 4 horas semanales de trabajo manual en tareas repetitivas de ingeniería.</p>`
+        }
+      };
+
+      let currentProjectId = "1";
+      let currentTab = "arch";
+
+      function renderModal() {
+        const data = deepDiveContent[currentProjectId];
+        if (!data) return;
+        modalTitle.textContent = data.title;
+        modalBadge.textContent = data.badge;
+        modalBody.innerHTML = data[currentTab] || "";
+      }
+
+      projectRows.forEach(row => {
+        row.addEventListener("click", () => {
+          floatingPreview.classList.remove("active");
+          currentProjectId = row.dataset.id;
+          currentTab = "arch";
+          modalTabs.forEach(t => t.classList.toggle("active", t.dataset.tab === "arch"));
+          renderModal();
+          modal.classList.add("open");
+          modal.setAttribute("aria-hidden", "false");
+        });
+      });
+
+      modalClose.addEventListener("click", () => {
+        modal.classList.remove("open");
+        modal.setAttribute("aria-hidden", "true");
+      });
+
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          modal.classList.remove("open");
+          modal.setAttribute("aria-hidden", "true");
+        }
+      });
+
+      modalTabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+          modalTabs.forEach(t => t.classList.remove("active"));
+          tab.classList.add("active");
+          currentTab = tab.dataset.tab;
+          renderModal();
+        });
+      });
+
+      // 8. Cross-Highlighting de Habilidades
+      const skillChips = document.querySelectorAll(".skill-chip");
+      const experienceItems = document.querySelectorAll(".timeline-item");
+
+      skillChips.forEach(chip => {
+        chip.addEventListener("click", () => {
+          const skill = chip.dataset.skill;
+          skillChips.forEach(c => c.classList.remove("active"));
+          chip.classList.add("active");
+
+          if (skill === "all") {
+            projectRows.forEach(r => r.classList.remove("highlight-match", "highlight-dim"));
+            experienceItems.forEach(e => e.classList.remove("highlight-match", "highlight-dim"));
+            return;
+          }
+
+          projectRows.forEach(row => {
+            const techs = (row.dataset.tech || "").toLowerCase();
+            const match = techs.includes(skill);
+            row.classList.toggle("highlight-match", match);
+            row.classList.toggle("highlight-dim", !match);
+          });
+
+          experienceItems.forEach(item => {
+            const techs = (item.dataset.tech || "").toLowerCase();
+            const match = techs.includes(skill);
+            item.classList.toggle("highlight-match", match);
+            item.classList.toggle("highlight-dim", !match);
+          });
+        });
+      });
+
+      // 9. Copiar email interactivo
+      const copyEmailBtn = document.getElementById("copyEmailBtn");
+      const copyFeedback = document.getElementById("copyFeedback");
+      if (copyEmailBtn && copyFeedback) {
+        copyEmailBtn.addEventListener("click", () => {
+          navigator.clipboard.writeText("jcamiloorozco02@gmail.com").then(() => {
+            copyFeedback.textContent = "✓ ¡Copiado!";
+            setTimeout(() => { copyFeedback.textContent = "[ Copiar ]"; }, 2500);
+          });
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
