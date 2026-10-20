@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juan Camilo Zapata | Galería de Plantillas de Portafolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: rgba(18, 24, 38, 0.7);
+      --border: rgba(255, 255, 255, 0.08);
+      --accent: #38bdf8;
+      --accent-purple: #a855f7;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      padding: 3rem 1.5rem;
+      background-image: radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.12) 0%, transparent 60%);
+      min-height: 100vh;
+    }
+    .container { max-width: 1100px; margin: 0 auto; }
+    header { text-align: center; margin-bottom: 3.5rem; }
+    .badge {
+      display: inline-block; padding: 0.35rem 0.85rem; border-radius: 99px;
+      font-size: 0.8rem; font-weight: 600; color: var(--accent);
+      background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.25);
+      margin-bottom: 1rem;
+    }
+    h1 { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.8rem; }
+    p.lead { color: var(--muted); font-size: 1.1rem; max-width: 650px; margin: 0 auto; }
+    .templates-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.8rem;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      backdrop-filter: blur(10px);
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+      position: relative;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(56, 189, 248, 0.4);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 20px rgba(56, 189, 248, 0.1);
+    }
+    .card.active { border-color: #10b981; }
+    .card-tag {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+      padding: 0.25rem 0.6rem; border-radius: 6px; width: fit-content; margin-bottom: 1rem;
+    }
+    .tag-active { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .tag-alt { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
+    .tag-cyan { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+    .card h2 { font-size: 1.35rem; font-weight: 700; margin-bottom: 0.6rem; }
+    .card p { color: var(--muted); font-size: 0.92rem; line-height: 1.6; margin-bottom: 1.5rem; }
+    .btn {
+      display: block; width: 100%; text-align: center; padding: 0.8rem 1.2rem;
+      border-radius: 10px; font-weight: 600; font-size: 0.9rem; text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-purple)); color: #090d16; }
+    .btn-primary:hover { opacity: 0.95; transform: scale(1.02); }
+    .btn-secondary { background: rgba(255, 255, 255, 0.05); color: var(--text); border: 1px solid var(--border); }
+    .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); border-color: var(--accent); }
+    .preview-box {
+      width: 100%; height: 140px; background: #0c101a; border: 1px solid var(--border);
+      border-radius: 10px; margin-bottom: 1.2rem; display: flex; align-items: center; justify-content: center;
+      font-size: 2.2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="badge">Explorador de Diseños</span>
+      <h1>Elige el Estilo de tu Portafolio</h1>
+      <p class="lead">He preparado 4 estilos visuales y arquitectónicos diferentes para tu portafolio, todos adaptados a tu experiencia en .NET, Python, Linux e IA Agéntica.</p>
+    </header>
+
+    <div class="templates-grid">
+      <!-- Plantilla 0: La actual -->
+      <div class="card active">
+        <div>
+          <div class="preview-box">🌌</div>
+          <span class="card-tag tag-active">● PUBLICADA ACTUALMENTE</span>
+          <h2>Cyber Modern (SaaS Dark)</h2>
+          <p>Fondo de malla técnica con resplandor neón, tarjeta interactiva que simula un archivo <code>engineer.py</code>, switch bilingüe (ES/EN) y contadores dinámicos.</p>
+        </div>
+        <a href="../index.html" class="btn btn-secondary">Ver Diseño Actual</a>
+      </div>
+
+      <!-- Plantilla 1: Terminal / Hacker -->
+      <div class="card">
+        <div>
+          <div class="preview-box">💻</div>
+          <span class="card-tag tag-cyan">TERMINAL &amp; LINUX</span>
+          <h2>Geek Terminal (Hacker CLI)</h2>
+          <p>Estilo consola interactiva (Zsh/Bash en ThinkPad/Arch). Presenta tu perfil como JSON, tus proyectos como scripts ejecutables y un prompt interactivo. Ideal para destacar Linux y backend.</p>
+        </div>
+        <a href="plantilla_1_terminal.html" class="btn btn-primary">Previsualizar Terminal</a>
+      </div>
+
+      <!-- Plantilla 2: Bento Grid -->
+      <div class="card">
+        <div>
+          <div class="preview-box">🍱</div>
+          <span class="card-tag tag-alt">BENTO GRID (APPLE STYLE)</span>
+          <h2>Modern Bento Grid</h2>
+          <p>Inspirado en la tendencia Bento UI (Apple/Vercel). Tarjetas modulares de cristal esmerilado con métricas destacadas, stack tecnológico en píldoras y proyectos clave en bloques asimétricos.</p>
+        </div>
+        <a href="plantilla_2_bento.html" class="btn btn-primary">Previsualizar Bento Grid</a>
+      </div>
+
+      <!-- Plantilla 3: Minimal Editorial -->
+      <div class="card">
+        <div>
+          <div class="preview-box">📰</div>
+          <span class="card-tag tag-cyan">MINIMALISTA &amp; SENIOR</span>
+          <h2>Minimal Editorial (Clean Mono)</h2>
+          <p>Diseño sobrio de alta legibilidad inspirado en publicaciones de ingeniería y blogs de Silicon Valley. Tipografía Serif + Sans, líneas limpias y cero distracciones visuales.</p>
+        </div>
+        <a href="plantilla_3_editorial.html" class="btn btn-primary">Previsualizar Editorial</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

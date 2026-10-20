@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juan Camilo Zapata | Minimal Editorial Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:italic@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f1012;
+      --text: #f0f0f2;
+      --muted: #8a8d93;
+      --border: #23252a;
+      --accent: #e2e8f0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      padding: 4rem 2rem;
+      line-height: 1.6;
+      max-width: 850px;
+      margin: 0 auto;
+    }
+    .serif { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; }
+    header { margin-bottom: 5rem; }
+    .hero-title { font-size: 3.2rem; line-height: 1.15; margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+    .hero-title em { color: var(--muted); font-style: italic; }
+    .bio { font-size: 1.15rem; color: var(--muted); max-width: 650px; margin-bottom: 2rem; }
+    .meta-nav { display: flex; gap: 1.8rem; font-size: 0.9rem; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1rem 0; margin-bottom: 4rem; }
+    .meta-nav a { color: var(--text); text-decoration: none; border-bottom: 1px solid transparent; }
+    .meta-nav a:hover { border-color: var(--text); }
+    .section { margin-bottom: 4.5rem; }
+    .sec-kicker { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 1.5rem; }
+    .item { display: grid; grid-template-columns: 180px 1fr; gap: 1.5rem; margin-bottom: 2.2rem; }
+    .item-date { color: var(--muted); font-size: 0.88rem; }
+    .item-title { font-size: 1.15rem; font-weight: 600; margin-bottom: 0.3rem; }
+    .item-desc { color: var(--muted); font-size: 0.95rem; }
+    .tags { margin-top: 0.5rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .tag { font-size: 0.75rem; color: var(--muted); background: var(--border); padding: 0.15rem 0.5rem; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 class="hero-title serif">Juan Camilo Zapata — <em>Software Engineer especializado en Backend, Arquitectura e IA.</em></h1>
+    <p class="bio">Construyendo servicios distribuidos, APIs empresariales y soluciones resilientes con .NET, Python y React. Enfoque riguroso en Arquitectura Hexagonal, SOLID y TDD en Medellín, Colombia.</p>
+    <div class="meta-nav">
+      <a href="https://github.com/CamiloOrozco-dev" target="_blank">GitHub</a>
+      <a href="https://linkedin.com/in/camilo-orozco-5706b8265" target="_blank">LinkedIn</a>
+      <a href="mailto:jcamiloorozco02@gmail.com">Contacto</a>
+      <a href="../assets/CV_Juan_Camilo_Zapata_ES.pdf" download>Currículum (PDF)</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="section">
+      <div class="sec-kicker">01 / Experiencia</div>
+      <div class="item">
+        <div class="item-date">2024 — Presente</div>
+        <div>
+          <div class="item-title">Backend & Full Stack Engineer</div>
+          <div style="font-size: 0.9rem; color: #a1a1aa; margin-bottom: 0.4rem;">Sector de Control en Tiempo Real y Movilidad</div>
+          <div class="item-desc">Diseño de arquitectura hexagonal en Python y Linux embebido. Implementación de pruebas TDD, automatizaciones con agentes de IA y mensajería distribuida segura.</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-date">2023 — 2024</div>
+        <div>
+          <div class="item-title">Software Developer (.NET & React)</div>
+          <div style="font-size: 0.9rem; color: #a1a1aa; margin-bottom: 0.4rem;">Consultoría Internacional de Software</div>
+          <div class="item-desc">Desarrollo de servicios empresariales en .NET y SQL Server, interfaces en React y pruebas de integración bajo metodología Scrum en Azure DevOps.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="sec-kicker">02 / Selección de Proyectos</div>
+      <div class="item">
+        <div class="item-date">Plataforma Edge</div>
+        <div>
+          <div class="item-title">Control Distribuido en Tiempo Real</div>
+          <div class="item-desc">Microservicios en contenedores con API REST documentada en OpenAPI, mensajería asíncrona cifrada y TDD estricto.</div>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Hexagonal</span><span class="tag">Docker</span><span class="tag">Linux</span></div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-date">Backend .NET 8</div>
+        <div>
+          <div class="item-title">API Empresarial por Capas</div>
+          <div class="item-desc">Servicio REST estructurado según Clean Architecture, validaciones automatizadas de calidad y pipelines de CI/CD.</div>
+          <div class="tags"><span class="tag">C#</span><span class="tag">ASP.NET Core</span><span class="tag">SQL Server</span></div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
