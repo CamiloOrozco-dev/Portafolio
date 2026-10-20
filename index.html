@@ -61,7 +61,12 @@
     <section class="hero" id="inicio">
       <div class="container hero__inner">
         <div class="hero__content reveal">
-          <span class="badge"><span class="pulse"></span><span data-i18n="hero.badge">Disponible para nuevas oportunidades</span></span>
+          <div class="hero__header">
+            <div class="hero__avatar-box">
+              <img src="assets/Me.jpg" alt="Juan Camilo Zapata" class="hero__avatar" width="56" height="56">
+            </div>
+            <span class="badge"><span class="pulse"></span><span data-i18n="hero.badge">Disponible para nuevas oportunidades</span></span>
+          </div>
           <h1 class="hero__title">
             <span data-i18n="hero.greeting">Hola, soy</span><br>
             <span class="gradient-text">Juan Camilo Zapata</span>
@@ -129,18 +134,30 @@
           <h2 class="section__title" data-i18n="about.title">Sobre mí</h2>
         </div>
         <div class="about reveal">
-          <div class="about__text">
-            <p data-i18n="about.p1">Soy Ingeniero de Software con más de 3 años de experiencia diseñando, desarrollando y manteniendo aplicaciones empresariales, APIs REST, microservicios y sistemas distribuidos en tiempo real sobre Linux y contenedores Docker.</p>
-            <p data-i18n="about.p2">Me apasiona escribir código limpio y mantenible: trabajo con <strong>Arquitectura Hexagonal</strong>, principios <strong>SOLID</strong>, Inversión de Control y <strong>Test-Driven Development</strong>. He integrado software con hardware en dispositivos embebidos y automatizado flujos de ingeniería supervisando <strong>Agentes de IA</strong>.</p>
-            <p data-i18n="about.p3">Disfruto colaborar en equipos ágiles bajo Scrum, documentar con claridad y convertir requerimientos complejos en productos estables y escalables.</p>
+          <div class="about__media">
+            <div class="about__photo-card">
+              <div class="about__photo-glow" aria-hidden="true"></div>
+              <img src="assets/me2.jpg" alt="Juan Camilo Zapata" class="about__photo" loading="lazy" decoding="async">
+              <div class="about__photo-badge">
+                <span class="pulse"></span>
+                <span data-i18n="about.photoBadge">Medellín, CO · Ingeniero de Software</span>
+              </div>
+            </div>
           </div>
-          <ul class="about__facts">
-            <li><span class="fact__icon">📍</span><span data-i18n="about.f1">Medellín, Colombia · Remoto / Híbrido</span></li>
-            <li><span class="fact__icon">🎓</span><span data-i18n="about.f2">Ingeniería de Software (en curso)</span></li>
-            <li><span class="fact__icon">🧠</span><span data-i18n="about.f3">Certificado en Azure AI &amp; Azure OpenAI</span></li>
-            <li><span class="fact__icon">🔄</span><span data-i18n="about.f4">Scrum Foundation Professional (SFPC™)</span></li>
-            <li><span class="fact__icon">🗣️</span><span data-i18n="about.f5">Español nativo · Inglés B1/B2</span></li>
-          </ul>
+          <div class="about__content">
+            <div class="about__text">
+              <p data-i18n="about.p1">Soy Ingeniero de Software con más de 3 años de experiencia diseñando, desarrollando y manteniendo aplicaciones empresariales, APIs REST, microservicios y sistemas distribuidos en tiempo real sobre Linux y contenedores Docker.</p>
+              <p data-i18n="about.p2">Me apasiona escribir código limpio y mantenible: trabajo con <strong>Arquitectura Hexagonal</strong>, principios <strong>SOLID</strong>, Inversión de Control y <strong>Test-Driven Development</strong>. He integrado software con hardware en dispositivos embebidos y automatizado flujos de ingeniería supervisando <strong>Agentes de IA</strong>.</p>
+              <p data-i18n="about.p3">Disfruto colaborar en equipos ágiles bajo Scrum, documentar con claridad y convertir requerimientos complejos en productos estables y escalables.</p>
+            </div>
+            <ul class="about__facts">
+              <li><span class="fact__icon">📍</span><span data-i18n="about.f1">Medellín, Colombia · Remoto / Híbrido</span></li>
+              <li><span class="fact__icon">🎓</span><span data-i18n="about.f2">Ingeniería de Software (en curso)</span></li>
+              <li><span class="fact__icon">🧠</span><span data-i18n="about.f3">Certificado en Azure AI &amp; Azure OpenAI</span></li>
+              <li><span class="fact__icon">🔄</span><span data-i18n="about.f4">Scrum Foundation Professional (SFPC™)</span></li>
+              <li><span class="fact__icon">🗣️</span><span data-i18n="about.f5">Español nativo · Inglés B1/B2</span></li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>

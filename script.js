@@ -24,6 +24,7 @@
     "stats.projects": "Key projects",
     "stats.certs": "Certifications",
     "about.title": "About me",
+    "about.photoBadge": "Medellín, CO · Software Engineer",
     "about.p1": "I'm a Software Engineer with 3+ years of experience designing, building and maintaining enterprise applications, REST APIs, microservices and real-time distributed systems on Linux and Docker.",
     "about.p2": "I care about clean, maintainable code: I work with <strong>Hexagonal Architecture</strong>, <strong>SOLID</strong> principles, Inversion of Control and <strong>Test-Driven Development</strong>. I've integrated software with hardware on embedded devices and automated engineering workflows by supervising <strong>AI Agents</strong>.",
     "about.p3": "I enjoy working in agile Scrum teams, writing clear documentation and turning complex requirements into stable, scalable products.",
