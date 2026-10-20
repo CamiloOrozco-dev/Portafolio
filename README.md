@@ -1,17 +1,27 @@
 # Portafolio — Juan Camilo Zapata Orozco
 
-Sitio estático (HTML + CSS + JavaScript, sin dependencias ni build) listo para publicar con **GitHub Pages**.
+Sitio estático profesional (HTML5 + CSS3 + Vanilla JavaScript, sin frameworks ni dependencias de compilación) publicado en **GitHub Pages**:
+👉 **[https://camiloorozco-dev.github.io/Portafolio/](https://camiloorozco-dev.github.io/Portafolio/)**
 
-## Estructura
+## Características
+
+- **Selector Modo Oscuro / Modo Día:** Con persistencia en `localStorage` y detección automática de preferencia de sistema (`prefers-color-scheme`).
+- **Soporte Bilingüe (ES / EN):** Alternancia instantánea de idioma sin recargar página.
+- **Tarjeta Interactiva de Código:** Previsualización dinámica de sintaxis en `engineer.py`.
+- **Efecto de Escritura & Animaciones:** Respetando `prefers-reduced-motion` para máxima accesibilidad.
+- **Diseño Responsive:** Optimizado para escritorio, tablets y dispositivos móviles.
+- **Acceso Directo a CVs:** Descarga de currículum optimizado para ATS en español e inglés.
+
+## Estructura del Proyecto
 
 ```
 portfolio/
-├── index.html      # Contenido y secciones
-├── styles.css      # Estilos (tema oscuro, responsive)
-├── script.js       # Idioma ES/EN, menú móvil, animaciones
+├── index.html      # Estructura semántica, accesibilidad y contenidos
+├── styles.css      # Sistema de diseño, variables CSS de tema (Dark/Light) y media queries
+├── script.js       # Lógica de temas, traducciones ES/EN, animaciones y menú interactivo
 └── assets/
-    ├── CV_Juan_Camilo_Zapata_ES.pdf
-    └── CV_Juan_Camilo_Zapata_EN.pdf
+    ├── CV_Juan_Camilo_Zapata_ES.pdf   # CV profesional en español
+    └── CV_Juan_Camilo_Zapata_EN.pdf   # CV profesional en inglés
 ```
 
 ## Verlo en local
