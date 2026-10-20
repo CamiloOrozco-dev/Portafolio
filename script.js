@@ -99,6 +99,33 @@
 
   let lang = localStorage.getItem("lang") || "es";
 
+  // ---------- Tema (Modo Oscuro / Claro) ----------
+  const themeToggle = document.getElementById("themeToggle");
+  function applyTheme(theme) {
+    if (theme === "light") {
+      document.documentElement.setAttribute("data-theme", "light");
+      if (themeToggle) themeToggle.setAttribute("aria-label", lang === "en" ? "Switch to dark mode" : "Cambiar a modo oscuro");
+    } else {
+      document.documentElement.removeAttribute("data-theme");
+      if (themeToggle) themeToggle.setAttribute("aria-label", lang === "en" ? "Switch to light mode" : "Cambiar a modo claro");
+    }
+    localStorage.setItem("theme", theme);
+  }
+
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      const isLight = document.documentElement.getAttribute("data-theme") === "light";
+      applyTheme(isLight ? "dark" : "light");
+    });
+  }
+
+  // Respetar cambio de preferencia del sistema si el usuario no tiene preferencia guardada
+  window.matchMedia("(prefers-color-scheme: light)").addEventListener("change", (e) => {
+    if (!localStorage.getItem("theme")) {
+      applyTheme(e.matches ? "light" : "dark");
+    }
+  });
+
   // ---------- Idioma ----------
   const langToggle = document.getElementById("langToggle");
   function applyLang(next) {
